@@ -1,0 +1,151 @@
+Linux file system:
+--------------------
+/ called as root directory
+Home directory: All the directories are created under the Home directory with user name. it contain only normal users info.
+---------------
+
+bin directory: Contain all the binary files.
+-------------
+-> As a normal user we can accessible the binaries in the bin directory only. But the root user accessible for both bin and sbin.
+
+sbin directory: sbin=system binary : Contain some binaries like shutdown, reboot, adduser,,,, etc
+----------------
+-> The binaries which are avaiable in the sbin directory only accessible by the root user.
+
+TYPES Of USERS:
+---------------
+1)root user/system user
+2)normal user
+3)system user
+
+etc directory: contain all the configuration files like shadow, passwd(contains user inforamation), group, sudoers,,,,etc
+--------------
+
+lib directory: Contain all the libraries which are used by the Operating system.
+--------------
+
+proc directory: All the process info available in this dir and also contain main files called as cpuinfo file, meminfo,,,,etc
+---------------
+
+dev directory: dev=devices: we can attach printers, hard disks,,,
+--------------
+
+tmp directory: It can be accessible all the users in that server.
+--------------
+
+var directory: All the system variable information available like logs, mails,,,,etc.
+--------------
+
+opt directory: By defalut opt directory is empty. This opt dir can be accessible by the root user. Generally in opt dir we are going to install all the 
+-------------- third party softwares.
+
+Q. what is the root user home directory?
+Ans: /root
+
+----------------------------------------------------------CLASS-1 END-------------------------------------------------------------------------------------
+
+LINUX COMMANDS:
+---------------
+
+# mkdir <dir_name>
+# mkdir -p <dir1>/<dir2>  --> dir2 created as sub dir to dir1. if dir1 is not there already it will create both, if dir1 is already exist create dir2 only.
+# mkdir -m 700 <dir_name>  --> Creating a dir with custom permissions.
+# touch <file_name>  --> To create a empty file.
+# cat <file_name>  --> To list the content in the file.
+# man <command>  --> its helps to list the options.  ex:- man mkdir, man ls 
+# ls  --> list all the files and directories.
+# ls -l --> long list. files starting with -(hypan) and dir starting with 'd'.
+Example:
+--------
+[root@ip-172-31-45-133 ~]# ls -l
+total 0
+drwxr-xr-x 2 root root 6 Jul 27 15:52 dir1  (first root is username and second root is group name)
+-rw-r--r-- 1 root root 0 Jul 27 15:53 file1
+
+# ls -a  --> list the hidden directories and files.
+# tree  --> list the all the files and dirs in tree way model.
+Example:
+--------
+[root@ip-172-31-45-133 ~]# tree
+.
+├── dir1
+├── dir2
+├── file1
+└── file2
+
+2 directories, 2 files
+
+# ls -lt  --> based on recent access file time it displays.
+Example:
+--------
+[root@ip-172-31-45-133 ~]# ls -lt
+total 0
+drwxr-xr-x 2 root root 24 Jul 27 16:12 dir1
+drwxr-xr-x 2 root root  6 Jul 27 16:08 dir2
+-rw-r--r-- 1 root root  0 Jul 27 16:07 file2
+-rw-r--r-- 1 root root  0 Jul 27 15:53 file1
+
+# ls -ltr  --> reverse
+Example:
+-------
+[root@ip-172-31-45-133 ~]# ls -ltr   (t= access time, r=reverse)
+total 0
+-rw-r--r-- 1 root root  0 Jul 27 15:53 file1
+-rw-r--r-- 1 root root  0 Jul 27 16:07 file2
+drwxr-xr-x 2 root root  6 Jul 27 16:08 dir2
+drwxr-xr-x 2 root root 24 Jul 27 16:12 dir1
+
+# ls -li  list the i nodes. As a human we are remembering file names and dir names but the OS rembered those names with the help of i noed number.
+  i node number contains all the info about files and dirs like who is the user, group, timestamp and all except file name and dir name.
+Example:
+-------
+[root@ip-172-31-45-133 ~]# ls -li
+total 0
+ 382704 drwxr-xr-x 2 root root 24 Jul 27 16:12 dir1
+4458281 drwxr-xr-x 2 root root  6 Jul 27 16:08 dir2
+9181614 -rw-r--r-- 1 root root  0 Jul 27 15:53 file1
+9181615 -rw-r--r-- 1 root root  0 Jul 27 16:07 file2
+
+# cd  -> moves to that particular user home directory.
+# cd / -> moves root directory.
+Example:
+-------
+[root@ip-172-31-45-133 ~]# cd
+[root@ip-172-31-45-133 ~]# pwd
+/root
+[root@ip-172-31-45-133 ~]# cd /
+[root@ip-172-31-45-133 /]# pwd
+/
+
+# cd -  -->Previous working directory where you are in.
+# rmdir <dir_name> --> To delete empty directories.
+# rm -rf <dir_name> --> To delete the directory needs to use -r.
+# rm -f <file_name>  --> To delete the files.
+
+# yum install/update/remove <package name>
+Examples:
+---------
+# yum install tree  --> To install packages in RedHat.
+# yum update tree   --> To update packages in RedHat.
+# yum remove tree  --> To remove packages in RedHat.
+
+-------------------------------------------------------------------CLASS-2 END----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
