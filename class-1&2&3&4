@@ -270,6 +270,83 @@ CHANGE OWNERSHIP:
 
 ----------------------------------------------------------------CLASS-3 END-------------------------------------------------------------------------------
 
+COPY FILES FROM ONE DIR/FILE TO OTHER DIR/FILE
+----------------------------------------------
+
+# cp file.txt dir1
+# cp -r dir1 dir2   -->if it is a dir needs to use -r
+
+RENAME THE FILE  AND MOVE THE FILE:
+------------------------------------
+# mv old_filename/dir-name new_filename/dir-name  --> To rename
+# mv file1.txt dir1
+# mv dir1 dir2
+
+
+# file <file-name> to check what type of file it is..
+
+NUMBER OF LINES IN A FILE:
+-------------------------
+# wc <file-name>
+Example:
+----------
+[root@ip-172-31-45-133 ~]# wc file1.txt 
+  313  1469 10111 file1.txt
+
+--> 313 Lines, 1469 words, 10111 characters.
+
+# wc -l <file_name>  -->  oprints only the lines
+Example;
+--------
+[root@ip-172-31-45-133 ~]# wc -l file1.txt 
+313 file1.txt
+# wc -w <file_name>  --> prints only words
+# wc -c <file_name>  --> prints only characters
+
+CREATING LINK:
+-------------
+-->By default the ln command creates Hardlink
+-->ln command can be executed by the any of the users
+
+Hardlink:- The original file and link file have the same properties. if the original file has 2gb, then the link file also has 2gb, same permissions 
+and all,,,, etc.
+
+# ln /var/flipkart/flipkar.log /tmp/flipkart-linkfile.log (Hard link)
+# ln -s /var/flipkart/flipkar.log /tmp/flipkart-linkfile.log (Soft link)
+
+
+                      Hardlink                                    Softlink
+                      ---------                                   ---------
+-->Link file having same as original                    different properties
+   file properties
+-->Even if we delete the original file                  If we delete the original file, not able to access the link file
+   still we can access to link file
+--> if we update original file the link
+     also updated and vice-versa
+     
+     
+     
+     
+# vi file1.txt
+--> esc -> shift + colon -> se nu -> Enter ---> To set line numbers to the content in the file
+--> esc -> shift + colon -> se nonu -> Enter ---> To remove line numbers to the content in the file
+--> esc -> shift + colon -> <enter the number where we want to jump> -> Enter
+--> esc -> shift + colon ->/<word want you search> -> Enter
+
+
+--------------------------------------------------------------CLASS-4 END---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
