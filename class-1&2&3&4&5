@@ -336,17 +336,272 @@ and all,,,, etc.
 
 --------------------------------------------------------------CLASS-4 END---------------------------------------------------------------------------------
 
+# cat -n <file_name>  -->Displays the content with numbers
+Example:
+---------
+[root@ip-172-31-45-133 ~]# cat -n file1.txt 
+     1  Linux file system:
+     2  --------------------
+     3  / called as root directory
+     4  Home directory: All the directories are created under the Home directory with user name. it contain only normal users info.
+     5  ---------------
+     6
+     7  bin directory: Contain all the binary files.
+     8  -------------
+     9  -> As a normal user we can accessible the binaries in the bin directory only. But the root user accessible for both bin and sbin.
+    10
+    11  sbin directory: sbin=system binary : Contain some binaries like shutdown, reboot, adduser,,,, etc
+    12  ----------------
+
+
+# head -n <number> <file_name>  -->Displays the first n numbers. By default first 10 numbers are displayed
+
+Example:
+--------
+[root@ip-172-31-45-133 ~]# head -n 20 file1.txt 
+Linux file system:
+--------------------
+/ called as root directory
+Home directory: All the directories are created under the Home directory with user name. it contain only normal users info.
+---------------
+
+bin directory: Contain all the binary files.
+-------------
+-> As a normal user we can accessible the binaries in the bin directory only. But the root user accessible for both bin and sbin.
+
+sbin directory: sbin=system binary : Contain some binaries like shutdown, reboot, adduser,,,, etc
+----------------
+-> The binaries which are avaiable in the sbin directory only accessible by the root user.
+
+TYPES Of USERS:
+---------------
+1)root user/system user
+2)normal user
+3)system user
+
+
+# tail -n <number> <file_name>  -->Displays the last n numbers.
+
+Q. How to see that last 10 line updated content keep changing?
+Answer:- # tail -f <file_name>  (-f = file appender)
+
+# sed -n '<line_number_which we want to display p>' <file_name>  -->displays the content in given line number.
+Example:
+--------
+[root@ip-172-31-45-133 ~]# sed -n '78p' file1.txt 
+# ls -lt  --> based on recent access file time it displays.
+
+# sed -n '108,120p' <file_name> -->Displays the content in the given range.
+
+-->sed(stream editor) command also used to replace the particular content in the file
+Example:
+--------
+[root@ip-172-31-45-133 ~]# cat sample.txt 
+red is danger color red
+red is not good red
+i hate red   red 
+[root@ip-172-31-45-133 ~]# sed 's/red/blue/' sample.txt     (in each line only first occurance replaced)
+blue is danger color red
+blue is not good red
+i hate blue   red 
+
+[root@ip-172-31-45-133 ~]# cat sample.txt 
+red is danger color red
+red is not good red
+i hate red   red 
+[root@ip-172-31-45-133 ~]# sed 's/red/blue/g' sample.txt    (s=string   g=globally)
+blue is danger color blue
+blue is not good blue
+i hate blue   blue 
+
+
+# sed -i 's/red/blue/g' sample.txt  (now the original file changed) 
+
+# more <file_name> --> Displays the content page by page or screen by screen   (ctrl+f--> to forward and ctrl+b-->backward)
+
+# less <file_name>  --> if we want to come out press q or ctrl+c
+
+SORT COMMAND:
+-------------
+
+[root@ip-172-31-45-133 ~]# cat sort.txt 
+nihar
+raj
+ramesh
+suresh
+bhaskar
+mithun
+[root@ip-172-31-45-133 ~]# sort sort.txt 
+bhaskar
+mithun
+nihar
+raj
+ramesh
+suresh
+
+# sort -r <file_name> (displays output in reverse order)
+
+# cat <file_name> | sort  (here first command output passed as a input to the second command)
+Example:
+--------
+[root@ip-172-31-45-133 ~]# cat sort.txt 
+nihar
+raj
+ramesh
+suresh
+bhaskar
+mithun
+[root@ip-172-31-45-133 ~]# cat sort.txt | sort     (| called pipe symbol)
+bhaskar
+mithun
+nihar
+raj
+ramesh
+suresh
+
+[root@ip-172-31-45-133 ~]# cat sort.txt | sort | tr [a-z] [A-Z]    (tr=translate)
+BHASKAR
+MITHUN
+NIHAR
+RAJ
+RAMESH
+SURESH
+
+GREP:
+-----
+-->grep(global regular expression print)
+-->grep used to search
+
+# grep <word-to-search> <file_name>
+Example:
+--------
+[root@ip-172-31-45-133 ~]# grep 'nihar' sort.txt 
+nihar
+[root@ip-172-31-45-133 ~]# grep 'Nihar' sort.txt 
+[root@ip-172-31-45-133 ~]# grep -i 'Nihar' sort.txt   (-i = ignore the case)
+nihar
+
+
+SYSTEM RELATED COMMANDS:
+________________________
+
+WHO COMMAND:
+-----------
+--> who command used to know how many users are logged in
+
+Example:
+-------
+[root@ip-172-31-45-133 ~]# who
+ec2-user pts/0        2022-07-28 09:46 (ec2-3-110-188-88.ap-south-1.compute.amazonaws.com)
+[root@ip-172-31-45-133 ~]# who -H
+NAME     LINE         TIME             COMMENT
+ec2-user pts/0        2022-07-28 09:46 (ec2-3-110-188-88.ap-south-1.compute.amazonaws.com)
+
+UPTIME COMMAND:
+-------------
+--> used to know from how long this server up and running.
+Example:
+--------
+[ec2-user@ip-172-31-45-133 ~]$ uptime                                         (To see the load average)
+ 10:47:14 up 1 day, 54 min,  1 user,  load average: 0.00, 0.00, 0.00
+
+# cat /proc/cpuinfo  --> (To see how many cpu cores this server has)
+
+[root@ip-172-31-45-133 ~]# users
+ec2-user
+
+[root@ip-172-31-45-133 ~]# whoami   (as which user we are logged in)
+root
+
+-->whereis command used to know where the package is.
+# whereis <package-name>
+Example:
+-------
+[root@ip-172-31-45-133 ~]# whereis yum
+yum: /usr/bin/yum /etc/yum /etc/yum.conf /usr/share/man/man8/yum.8
+
+[root@ip-172-31-45-133 ~]# date
+Thu Jul 28 11:02:35 UTC 2022
+
+# date -s "date format"  --> To set the date
+
+To check how many hard disks are attached and how much it is used and how much it is free
+ # df -h  (df = disk free)
+
+[root@ip-172-31-45-133 ~]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        474M     0  474M   0% /dev
+tmpfs           483M     0  483M   0% /dev/shm
+tmpfs           483M  408K  483M   1% /run
+tmpfs           483M     0  483M   0% /sys/fs/cgroup
+/dev/xvda1      8.0G  1.6G  6.5G  20% /
+tmpfs            97M     0   97M   0% /run/user/1000
+
+# du <directory_name>  --> To know how much disk space that directory utilized
+
+[root@ip-172-31-45-133 ~]# du /home
+4       /home/ec2-user/.ssh
+24      /home/ec2-user
+24      /home
+[root@ip-172-31-45-133 ~]# du -h /home
+4.0K    /home/ec2-user/.ssh
+24K     /home/ec2-user
+24K     /home
+[root@ip-172-31-45-133 ~]# du -sh /home    (s=summary)
+24K     /home
+
+
+[root@ip-172-31-45-133 ~]# hostname
+ip-172-31-45-133.ap-south-1.compute.internal
+
+[root@ip-172-31-45-133 ~]# hostname -i
+172.31.45.133
+
+--> To set hostname
+
+[root@ip-172-31-45-133 ~]# hostname potla
+[root@ip-172-31-45-133 ~]# exit
+logout
+[ec2-user@ip-172-31-45-133 ~]$ sudo su -
+Last login: Thu Jul 28 10:57:22 UTC 2022 on pts/0
+[root@potla ~]# 
 
 
 
+[root@potla ~]# whatis ls
+ls (1)               - list directory contents
+ls (1p)              - list directory contents
+[root@potla ~]# whatis sed
+sed (1)              - stream editor for filtering and transforming text
+sed (1p)             - stream editor
 
 
+# service service_name start/stop/status/restart  (as a normal user we cant start and stop the service)
+Example;
+-------
+# service jenkins start
+
+# systemctl start/stop/status/restart service_name
+
+# systemctl list-unit-files --> To list all the services;
+
+LAST COMMAND
+------------
+--> show listing of last logged in users
 
 
+[root@potla ~]# last
+ec2-user pts/0        ec2-3-110-188-88 Thu Jul 28 09:46   still logged in   
+ec2-user pts/0        ec2-3-7-74-68.ap Thu Jul 28 05:34 - 07:33  (01:59)    
+ec2-user pts/0        ec2-43-204-23-13 Thu Jul 28 03:12 - 04:51  (01:38)    
+ec2-user pts/0        ec2-43-204-23-13 Thu Jul 28 02:39 - 03:12  (00:32)    
+ec2-user pts/1        ec2-3-110-120-67 Wed Jul 27 15:36 - 17:03  (01:26)    
+ec2-user pts/0        ec2-3-110-120-67 Wed Jul 27 15:16 - 15:39  (00:22)    
+reboot   system boot  5.10.118-111.515 Wed Jul 27 09:52 - 11:34 (1+01:41)   
 
+wtmp begins Wed Jul 27 09:52:50 2022
 
-
-
+--------------------------------------------------------------------CLASS-5 END---------------------------------------------------------------------------
 
 
 
