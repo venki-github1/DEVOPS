@@ -131,13 +131,144 @@ Examples:
 
 -------------------------------------------------------------------CLASS-2 END----------------------------------------------------------------------------
 
+--> find command used to search and locate list of file and directories based on conditions you specify for files that match the arguments.Find can be used in
+in variety of conditions like you can find files by permissions, users, groups, filetype, date, size,,,,etc.
+
+# find . -type f   -->List the all files in current path.
+
+Q. How to find empty files in current path?
+Ans: # find . -type f -empty
+
+# find ~ -type f -empty  --> All the empty files in users home directory.
+# find / -type f -empty  --> All the empty filees in the server (To execute this command we need root access or sudo acces)
+
+# find . -type d -empty  --> Lists the all the empty directories in current path.
+
+-->Based on the umask value the default permissions are going to set for files and dirs.
+
+                           umask(defalut value)    default file permission
+          root             0022                         0644
+   Normal user             0002                         0662
+
+
+root-Base permissions for file are:  0666                   Base permission for directory are:    0777
+                                    -0022 (umask)                                               - 0022
+                                    -----                                                        -----
+                                    0644                                                         0755
+
+
+
+AS a normal user    0666                         Base permission for directory are:  0777
+                    0002                                                            -0002
+                    ----                                                             ----
+                    0662                                                             0775
+
+
+
+-->Command to display umask value:
+[root@ip-172-31-45-133 ~]# umask
+0022
+
+# umask <value>  -->Command to set umask value
+example:
+-------
+[root@ip-172-31-45-133 ~]# umask 0222
+[root@ip-172-31-45-133 ~]# umask
+0222
+
+-->To set umask permanantley--> Go to users home directory add umask <value> in .bash_profile file. and to reflect the change exit as that user and re-login 
+
+-->To set umask value for all the users add umask <value> in /etc/profile file.
+--> After set the umask value only the new files and dirs  permission are changed. the file's permissions which already created before won't change.
+
+rwxr-xr-x   
+r-->read-->4
+w-->write-->2
+x-->execute-->1
+
+-->Each file or dir has 3sets of permissions.
+   first set-->owner/user  second set--> group  third set-->other
+   
+   CHANGE PERMISSIONS
+   -------------------
+
+# chmod <value> file/dir-name -->To change the permissions
+Example:
+-------
+# chmod 777 file1.txt
+
+[root@ip-172-31-45-133 ~]# ll
+total 0
+drwxr-xr-x 2 root root 24 Jul 27 16:12 dir1
+drwxr-xr-x 2 root root  6 Jul 27 16:08 dir2
+-rw-r--r-- 1 root root  0 Jul 27 15:53 file1
+-rw-r--r-- 1 root root  0 Jul 27 16:07 file2
+[root@ip-172-31-45-133 ~]# chmod +x file1
+[root@ip-172-31-45-133 ~]# ll
+total 0
+drwxr-xr-x 2 root root 24 Jul 27 16:12 dir1
+drwxr-xr-x 2 root root  6 Jul 27 16:08 dir2
+-rwxr-xr-x 1 root root  0 Jul 27 15:53 file1
+-rw-r--r-- 1 root root  0 Jul 27 16:07 file2
+
+#chmod +r filenme == chmod ugo+r filename
+#chmod u+rwx,g+r,o+r filename
+Example:
+-------
+[root@ip-172-31-45-133 ~]# chmod u+rwx,g+r,o+r file1
+[root@ip-172-31-45-133 ~]# ll
+total 0
+drwxr-xr-x 2 root root 24 Jul 27 16:12 dir1
+drwxr-xr-x 2 root root  6 Jul 27 16:08 dir2
+-rwxr--r-- 1 root root  0 Jul 27 15:53 file1
+-rw-r--r-- 1 root root  0 Jul 27 16:07 file2
+
+
+[root@ip-172-31-45-133 ~]# chmod u-rwx,g-r,o-r file1
+[root@ip-172-31-45-133 ~]# ll
+total 0
+drwxr-xr-x 2 root root 24 Jul 27 16:12 dir1
+drwxr-xr-x 2 root root  6 Jul 27 16:08 dir2
+---------- 1 root root  0 Jul 27 15:53 file1
+-rw-r--r-- 1 root root  0 Jul 27 16:07 file2
+
+[root@ip-172-31-45-133 ~]# chmod ugo+rw file1
+[root@ip-172-31-45-133 ~]# ll
+total 0
+drwxr-xr-x 2 root root 24 Jul 27 16:12 dir1
+drwxr-xr-x 2 root root  6 Jul 27 16:08 dir2
+-rw-rw-rw- 1 root root  0 Jul 27 15:53 file1
+-rw-r--r-- 1 root root  0 Jul 27 16:07 file2
+
+#chmod 444 dir1  --> the sub dirs and file's permissions under dirl are not changed.
+#chmod -R 444 dir1  -->the sub dirs and file's permissions under dirl are changed.
+
+
+
+[ec2-user@ip-172-31-45-133 ~]$ sudo su
+[root@ip-172-31-45-133 ec2-user]# pwd
+/home/ec2-user
+[root@ip-172-31-45-133 ec2-user]# exit
+exit
+[ec2-user@ip-172-31-45-133 ~]$ sudo su -
+Last login: Thu Jul 28 04:24:14 UTC 2022 on pts/0
+[root@ip-172-31-45-133 ~]# pwd
+/root
 
 
 
 
 
+CHANGE OWNERSHIP:
+-----------------
+#chown,chgrp command executed as a root user only.
+#chown <owner_name> file/dir
+#chgrp <group_name> file/dir
 
+#chown -R , chgrp -R  --> for all sub dir and files
+#chown ownername:groupname file/dir  both user and group change at a time
 
+----------------------------------------------------------------CLASS-3 END-------------------------------------------------------------------------------
 
 
 
