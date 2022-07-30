@@ -605,6 +605,81 @@ wtmp begins Wed Jul 27 09:52:50 2022
 
 
 
+PROCESS MANAGEMENT COMMANDS:
+----------------------------
+# ps  --> process id of user (displays the current process running)
+# ps -ef  --> process ids of all users   (e means ALL  f means formatted way)
+# ps -ef | grep java  --> process ids of all java 
+# ps -ef | grep jenkins  --> process id of jenkins
+
+# kill -9 <PID>  --> To kill the process
+
+
+# ctrl + c --> Terminate the process.
+# ctrl + z --> Suspend the process
+
+# top  --> Lists how your server resources are utilizing currently. (Displays linux tasks)
+
+# sar(system activity report)  --> It is used to collect the CPU, Memory and I/O usage.
+
+CREATING ARCHIVE FILES (zip and tar)
+----------------------
+# zip -r <dir_name> devops.zip  (For directories needs to use -r)
+# Zip *.txt devops.zip  (To create zip files from all the text files)
+# unzip devops.zip (To extract into the current directory)
+# unzip devops.zip -d <path where we want to extract>
+
+# tar -cvf devops.tar <dir_name>  (c=create  v=verbose  f=file)
+# tar -cvf devops.tar *.txt  (tar all the text files)
+# tar -xvf devops.tar  (To extract tar files)
+
+USER AND GROUP ADMINISTRATION COMMANDS:
+---------------------------------------
+
+# useradd <user_name> (/home/<user_name> is the user's default home directory)
+# useradd -d <path> <user_name>  --> Creating a user with custome home directory  (Only root user can perform useradd command)
+# useradd -d /tmp/venky venky
+
+# passwd <user_name>   -->to create password for the user
+
+--> Normal users uid's starting from 1000.
+--> root user uid is 0.
+
+--> /etc->passwd file (contains all the users info)
+--> /etc->group file (contains all the group info)
+--> /etc->shadow file (Contains password and related info)
+
+# chage <user_name>  --> To set the password attributes.
+Example:
+-------
+[root@ip-172-31-45-133 ~]# chage venky
+Changing the aging information for venky
+Enter the new value, or press ENTER for the default
+
+        Minimum Password Age [0]: 90
+        Maximum Password Age [99999]: 90
+        Last Password Change (YYYY-MM-DD) [2022-07-30]: 2022-10-10
+        Password Expiration Warning [7]:     
+        Password Inactive [-1]: 
+        Account Expiration Date (YYYY-MM-DD) [-1]: 
+        
+        
+# groupadd <group_name>   --> To create group
+# usermod -g <group-name> <user_name>  -->To change the user's group
+
+# usermod -L <user_name> --> To lock the user from logging
+# usermod -U <user_name> --> To unlock the user
+ 
+ --> in /etc/shadow file we see a exclamatory (!) for a user that means the user is locked.
+ 
+ -------------------------------------------------------------- CLASS-6 END-------------------------------------------------------------------------------
+ 
+
+
+
+
+
+
 
 
 
