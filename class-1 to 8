@@ -712,7 +712,45 @@ HARDWARE INFORMATION COMMANDS:
 
 -----------------------------------------------------------------CLASS-7 END------------------------------------------------------------------------------
 
+# crontab -l  --> To see how many jobs are scheduled in crontab.
+--> create a empty file called cron.allow file in etc directory(if we create that file the crontab feature disable for all the users) (as a root we create)
+--> If we want to provide the access to the specific user add that user-name in cron.allow file.
 
+CRON format:
+------------
+MINUTE             HOUR            DAY OF MONTH              MONTH                    DAY OF WEEK             COMMAND/SCRIPT 
+(0-59)             (0-23)         (1-31)                    (1-12 or jan-Dec)       (0-6 or sun-sat)           /usr/bin/find
+
+EXAMPLE:
+--------
+*/1 * * * * hello.sh 
+
+*/1 * * * * /home/ec2-user/hello.sh > /home/ec2-user/output.log 2>&1  (if file is not available it is creates)  (> means redirect standard output (only not error)
+FILE DESCRIPTORS:
+-----------------
+0 --> standard input
+1 --> standard output
+2 --> standard error
+
+> means redirect standard output
+>> means append the standard output
+# crontab -e  (To edit crontab)
+
+*/1 * * * * /home/ec2-user/hello.sh > /home/ec2-user/output.log 2>&1
+*/1 * * * * /home/ec2-user/hello.sh >> /home/ec2-user/output.log 2>&1
+
+-->add # before crontab syntax to disable it
+
+# crontab -r (To delete the crontab)
+# crontab -ir (To delete in interactive mode)
+# crontab -l -u <user_name>   (AS a root user we can perform this command)
+
+
+# cal   --> To display the calendar
+# cal 2020
+# cal <1-12> 2020
+
+-----------------------------------------------------------------------CLASS-8 END -----------------------------------------------------------------------
 
 
 
