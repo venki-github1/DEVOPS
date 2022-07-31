@@ -752,6 +752,56 @@ FILE DESCRIPTORS:
 
 -----------------------------------------------------------------------CLASS-8 END -----------------------------------------------------------------------
 
+# wget <URL>
+# curl -o <tomcat.zip> <URL>
+
+# tee --> it will list the o/p and redirect the o/p as well
+Example:
+-------
+[root@ip-172-31-45-133 ~]# ls | tee teeopt.log
+all.zip
+devops
+ec2-user@ip-172-31-41-4.ap-south-1.compute.internal
+file1.txt
+output.log
+sample.txt
+sort.txt
+teeopt.log
+unzip
+
+# script  command records all the activities.
+# script enter then a new file called typescript is created.
+# script <file-name>  (To give the custom file name)
+--> To stop recording enter 'exit'
+--> # script -a typescript  (To append the new o/p to the old)
+
+# history  (The default history size is 1000)
+# history -c   --> To clear the history
+-->Even after restart the server also the history remains exist.
+
+# telnet
+# telnet google.com 80  --> To check whether the port is opened or not in remote server along with connectivity checking.
+
+# uname  -->To check which operating system we are using.
+# uname -a
+# uname -r (kernel release)
+# uname -n (hostname)
+
+# /etc->redhat-releases (For RHEL) --> To know which version of Linux we are using
+# /etc->os-releases (For ubuntu)
+
+# watch <command>  (by deafault the command is exected for every 2 sec)
+# watch -n 5 <command>  -->For every 5 seconds
+example: watch -n 5 date
+
+# exit
+# logout (= ctrl+d)
+# restart
+# shutdown (stop the server)
+# shutdown -c (stop the shutdown)
+# init 0 (stop the server immediately)
+
+------------------------------------------------------------------CLASS-9 END------------------------------------------------------------------------------
 
 
 
