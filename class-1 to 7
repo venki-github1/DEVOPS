@@ -674,6 +674,45 @@ Enter the new value, or press ENTER for the default
  
  -------------------------------------------------------------- CLASS-6 END-------------------------------------------------------------------------------
  
+ --> id command used to know the below details:
+ 
+[root@ip-172-31-45-133 ~]# id venky
+uid=1001(venky) gid=1001(venky) groups=1001(venky)
+
+Switch to the user:
+
+[root@ip-172-31-45-133 ~]# su - venky
+Last login: Sat Jul 30 14:48:10 UTC 2022 on pts/1
+[venky@ip-172-31-45-133 ~]$ pwd
+/home/venky
+
+-> To give the sudo access add users to sudoers file which is in /etc->sudoers file
+or  #visudo   venky   ALL=(ALL)       ALL  (add this line to give sudo access to that particular user)
+
+# userdel <user_name>  (it only deletes the user)
+# userdel -r <user_name>  (delete the user along with his home directory)
+# groupdel <grp-name>
+
+REMOTE ACCESS COMMANDS:
+-----------------------
+# cd /etc/ssh -> sshd_config  (To change the password autentication)
+  PasswordAuthentication no  to PasswordAuthentication yes to login with password and the changes applied after restart only
+    # service sshd restart
+
+# ssh venky@65.0.3.163 --> Now it asks password
+
+# scp <files to be copied>  <RmoteServerUsername>@<RmoteServerIP>:<Destination_path> 
+
+# scp -r <dir_name>  <RmoteServerUsername>@<RmoteServerIP>:<Destination_path>  (if it is directory) 
+
+HARDWARE INFORMATION COMMANDS:
+-----------------------------
+# free -h  (displays info about RAM)
+# dmidecode
+
+-----------------------------------------------------------------CLASS-7 END------------------------------------------------------------------------------
+
+
 
 
 
