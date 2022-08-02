@@ -35,6 +35,175 @@ step-3) execute your script as
 
 ------------------------------------------------------------------------CLASS-1 END------------------------------------------------------------------------
 
+# sh -x hello.sh  --> running the shell script in debug mode.
+->If we want run a particular code in debug mode add set -x and set +x in shell script.
+Example:
+-------
+#!/bin/bash
+echo "hello guys"
+set -x
+echo "gd mrng"
+echo "welocme to shell script"
+set +x
+echo "Today date is"
+date
+
+COMMENTS:
+---------
+# ->Single line comment
+ 
+<<MLC
+......
+.......          ->Multi-line comment (first and last same name should be there)
+.......
+.......
+MLC
+
+variables;
+----------
+a=10  (no space in between)
+name=venki  (no space in between)
+# printenv  or # env (to list the system defined variables)
+Q. is is possible to change system defined variable values?
+Ans: yes
+Example:
+--------
+[ec2-user@ip-172-31-35-179 ~]$ echo $HISTSIZE 
+1000
+[ec2-user@ip-172-31-35-179 ~]$ export HISTSIZE=1100  (this is temporary change)
+[ec2-user@ip-172-31-35-179 ~]$ echo $HISTSIZE 
+1100
+
+--> If we want change those values permanantely add those values in .bash_profile for user specifc or add in cd /etc->profile file for all the users.
+
+COMMAND LINE ARGUMENTS:
+-----------------------
+-->while executing the shell script the values are passed through the command prompt
+Example:
+-------
+[ec2-user@ip-172-31-35-179 ~]$ cat file1.sh 
+echo "file-name" $0
+echo "a value is" $1
+echo "b value is" $2
+echo "c value is" $3
+[ec2-user@ip-172-31-35-179 ~]$ sh file1.sh 11 12 13
+file-name file1.sh
+a value is 11
+b value is 12
+c value is 13
+
+$0-->gives file name
+$1-->first argument
+$2-->second, $3-->third....,,,
+
+$#-->Number of arguments
+$*-->All the args (as a one string)
+$@-->All the args(Each arg as a one string)
+# echo $$ -->Displays process id
+# $?-->previous command execution status(0=success)
+0--> success
+127-->standard error code for command not found
+
+[ec2-user@ip-172-31-35-179 ~]$ cat file1.sh 
+echo "file-name: " $0
+echo "a value is: " $1
+echo "b value is: " $2
+echo "c value is: " $3
+echo "number of args: " $#
+echo "all the args using *: " $*
+echo "all the args using @: " $@
+echo "process ID: " $$
+date
+echo "previous command execution status: " $?
+[ec2-user@ip-172-31-35-179 ~]$ sh file1.sh 1 2 3
+file-name:  file1.sh
+a value is:  1
+b value is:  2
+c value is:  3
+number of args:  3
+all the args using *:  1 2 3
+all the args using @:  1 2 3
+process ID:  4470
+Tue Aug  2 12:08:21 UTC 2022
+previous command execution status:  0
+
+
+[ec2-user@ip-172-31-35-179 ~]$ cat file1.sh 
+echo "file-name: " $0
+echo "a value is: " $1
+echo "b value is: " $2
+echo "c value is: " $3
+echo "number of args: " $#
+echo "all the args using *: " $*
+echo "all the args using @: " $@
+echo "process ID: " $$
+Date
+echo "previous command execution status: " $?
+[ec2-user@ip-172-31-35-179 ~]$ sh file1.sh 1 2
+file-name:  file1.sh
+a value is:  1
+b value is:  2
+c value is: 
+number of args:  2
+all the args using *:  1 2
+all the args using @:  1 2
+process ID:  4532
+file1.sh: line 9: Date: command not found
+previous command execution status:  127
+
+Needs to pass 3 args to execute shell script:
+if [ $# -eq 3 ]
+then
+echo "file-name: " $0
+echo "a value is: " $1
+echo "b value is: " $2
+echo "c value is: " $3
+echo "number of args: " $#
+echo "all the args using *: " $*
+echo "all the args using @: " $@
+echo "process ID: " $$
+Date
+echo "previous command execution status: " $?
+else
+echo "usage sh $0 arg1 arg2 arg3"
+fi
+
+
+----------------------------------------------------------------CLASS-2 END--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
