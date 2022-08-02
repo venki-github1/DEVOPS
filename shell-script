@@ -1,0 +1,62 @@
+--> shell is useful to automate our regular tasks,
+   monitoring several server resources like cpu utilization and memory utilization
+
+Q. How to know how many shell types are supporting by your linux server?
+Ans: check /etc->shells file
+
+--> To know which shell we are using 
+[root@ip-172-31-35-179 ~]# echo $SHELL
+/bin/bash
+
+[root@ip-172-31-35-179 ~]# echo $0
+-bash
+
+--> Switch to another shell
+
+serverresourcesmonitor.sh
+  THRESHOLD=80
+->df
+->free
+->top
+-->mail
+-->hostname
+-->ifconfig
+step-1) use any editor like vi to write shell script
+  syntax: vi <script_name>
+step-2) after writing shell script set execute permission for your script as follow
+  syntax: chmod u+x <scrpitFileNAME>
+step-3) execute your script as
+   syntax: sh <script-name>
+           ./<script-name>
+           . <script-name>
+
+#!/bin/bash
+#!-->called as shebang line
+
+------------------------------------------------------------------------CLASS-1 END------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
