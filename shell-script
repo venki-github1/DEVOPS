@@ -171,6 +171,116 @@ fi
 
 ----------------------------------------------------------------CLASS-2 END--------------------------------------------------------------------------------
 
+String:
+-------
+->string is nothing but one or more characters enclosed in a single or double quotes.
+
+Length of string:
+----------------
+[ec2-user@ip-172-31-35-179 ~]$ cat string.sh 
+string_var=venki
+echo "length of string is :" ${#string_var}
+[ec2-user@ip-172-31-35-179 ~]$ sh string.sh 
+length of string is : 5
+
+[ec2-user@ip-172-31-35-179 ~]$ cat string.sh 
+string_var='venki potla'
+echo "length of string is :" ${#string_var}
+[ec2-user@ip-172-31-35-179 ~]$ sh string.sh 
+length of string is : 11
+
+SubString:
+---------
+
+Example:
+--------
+[ec2-user@ip-172-31-35-179 ~]$ cat string.sh 
+string_var='venki potla is very good boy'
+echo "sub  string is :" ${string_var:4}         (ignores first 4 characters)
+[ec2-user@ip-172-31-35-179 ~]$ sh string.sh 
+sub  string is : i potla is very good boy
+
+echo ${string_var:n1:n2}  n1->from starting how many characters ignore
+                          n2-> from there how many characters needs to display
+Example:
+--------
+[ec2-user@ip-172-31-35-179 ~]$ cat string.sh 
+string_var='venki potla is very good boy'
+echo "sub  string is :" ${string_var:6:5}
+[ec2-user@ip-172-31-35-179 ~]$ sh string.sh 
+sub  string is : potla
+
+Example:
+--------
+[ec2-user@ip-172-31-35-179 ~]$ cat string.sh 
+string_var='venki potla is very good boy'
+echo "sub  string is :" ${string_var:(-3)}
+[ec2-user@ip-172-31-35-179 ~]$ sh string.sh 
+sub  string is : boy
+                          
+Arthimatic operations:
+----------------------
+Example:
+---------
+[ec2-user@ip-172-31-35-179 ~]$ cat arthmetic.sh 
+echo "arithmetic operations"
+
+expr 2 + 3
+expr 2 - 3
+expr 2 \* 3                                       (space is mandatory)
+expr 10 / 2
+expr 20 % 3
+[ec2-user@ip-172-31-35-179 ~]$ sh arthmetic.sh 
+arithmetic operations
+5
+-1
+6
+5
+2
+
+-> echo "the addition is" `expr 2 + 3`
+
+[ec2-user@ip-172-31-35-179 ~]$ cat aa.sh 
+expr $1 + $2
+[ec2-user@ip-172-31-35-179 ~]$ sh aa.sh 12 13
+25
+
+user interaction using read:
+----------------------------
+[ec2-user@ip-172-31-35-179 ~]$ cat arthmetic.sh 
+echo "enter a"
+read a
+echo "enter b"
+read b
+
+expr $a + $b
+expr $a - $b
+expr $a \* $b
+expr $a / $b
+expr $a % $b
+[ec2-user@ip-172-31-35-179 ~]$ sh arthmetic.sh 
+enter a
+2
+enter b
+3
+5
+-1
+6
+0
+
+[ec2-user@ip-172-31-35-179 ~]$ cat aa.sh 
+echo "please enter your name"
+read name
+echo "the name you entered is:" $name
+[ec2-user@ip-172-31-35-179 ~]$ sh aa.sh 
+please enter your name
+venky
+the name you entered is: venky
+
+---------------------------------------------------------------CLASS-3 END----------------------------------------------------------------------------------
+
+
+
 
 
 
