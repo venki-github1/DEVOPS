@@ -278,6 +278,272 @@ venky
 the name you entered is: venky
 
 ---------------------------------------------------------------CLASS-3 END----------------------------------------------------------------------------------
+ARRAY:
+-----
+[ec2-user@ip-172-31-35-179 ~]$ cat readex.sh 
+echo "please enter devops tools"
+read -a devopsTools
+echo "the tools are:" ${devopsTools[*]}
+echo "the 4th value is" ${devopsTools[3]}
+[ec2-user@ip-172-31-35-179 ~]$ sh readex.sh 
+please enter devops tools
+git maven nexus sonarqube tomcat docker k8s
+the tools are: git maven nexus sonarqube tomcat docker k8s
+the 4th value is sonarqube
+
+[ec2-user@ip-172-31-35-179 ~]$ cat read4.sh 
+echo "favourite color"
+read                                                    (not passing anything with read so use $REPLY to get that value)
+echo "favorite color is :" $REPLY
+[ec2-user@ip-172-31-35-179 ~]$ sh read4.sh 
+favourite color
+red
+favorite color is : red
+
+[ec2-user@ip-172-31-35-179 ~]$ cat example.sg 
+read -p "please enter your name: " username
+read -p "please enter password: " password
+echo "username is: " $username
+echo "password is:" $password
+[ec2-user@ip-172-31-35-179 ~]$ sh example.sg 
+please enter your name: venki
+please enter password: password@123
+username is:  venki
+password is: password@123
+
+[ec2-user@ip-172-31-35-179 ~]$ cat example.sg 
+read -p "please enter your name: " username
+read -sp "please enter password: " password
+echo "username is: " $username
+echo "password is:" $password
+[ec2-user@ip-172-31-35-179 ~]$ sh example.sg 
+please enter your name: venki
+please enter password: username is:  venki
+password is: venki@123
+
+input and output redirection:
+------------------------------
+> -->redirect standard output
+>> -->append the standard output
+< -->standard input
+
+[ec2-user@ip-172-31-35-179 ~]$ cat example.sh 
+read -p "please enter your name: " username
+read -p "please enter password: " password
+echo "username is: " $username
+echo "password is:" $password
+date
+[ec2-user@ip-172-31-35-179 ~]$ sh example.sh > output.log
+please enter your name: venki
+please enter password: venki123
+[ec2-user@ip-172-31-35-179 ~]$ cat output.log 
+username is:  venki
+password is: venki123
+Wed Aug  3 05:39:19 UTC 2022                          (only output is going to redireted not error) 
+
+
+[ec2-user@ip-172-31-35-179 ~]$ cat example.sh 
+read -p "please enter your name: " username
+read -p "please enter password: " password
+echo "username is: " $username
+echo "password is:" $password
+Date
+[ec2-user@ip-172-31-35-179 ~]$ sh example.sh > output.log
+please enter your name: venki
+please enter password: venki123
+example.sh: line 5: Date: command not found
+[ec2-user@ip-172-31-35-179 ~]$ cat output.log 
+username is:  venki
+password is: venki123
+
+
+FILE DECRIPTORS:
+---------------
+0 -> standard input 
+1 -> standard output
+2 -> standard error
+
+[ec2-user@ip-172-31-35-179 ~]$ cat example.sh 
+read -p "please enter your name: " username
+read -p "please enter password: " password
+echo "username is: " $username
+echo "password is:" $password
+Date
+[ec2-user@ip-172-31-35-179 ~]$ sh example.sh > out.log 2>&1
+venki
+venki123
+[ec2-user@ip-172-31-35-179 ~]$ cat out.log 
+please enter your name: please enter password: username is:  venki
+password is: venki123                                                   (along with o/p error also saved)
+example.sh: line 5: Date: command not found
+
+
+[ec2-user@ip-172-31-35-179 ~]$ cat example.sh 
+read -p "please enter your name: " username
+read -p "please enter password: " password
+echo "username is: " $username
+echo "password is:" $password
+Date
+[ec2-user@ip-172-31-35-179 ~]$ sh example.sh 2> err.log 1> output.log
+venki
+venki123
+[ec2-user@ip-172-31-35-179 ~]$ cat output.log 
+username is:  venki
+password is: venki123
+[ec2-user@ip-172-31-35-179 ~]$ cat err.log                    (both error and output in different files) 
+please enter your name: please enter password: example.sh: line 5: Date: command not found
+
+CONDITIONAL STATEMENT:
+-----------------------
+if syntax:
+if [ condition ]
+then
+.......
+.......
+.......
+.......
+else
+......
+......
+......
+......
+fi
+
+example:
+--------
+[ec2-user@ip-172-31-35-179 ~]$ cat if.sh 
+read -p "enter a :" a
+read -p "enter b :" b
+
+if [ $a -gt $b ]
+then
+        echo "$a is bigger"
+else
+        echo "$b is bigger"
+fi
+[ec2-user@ip-172-31-35-179 ~]$ sh if.sh 
+enter a :21
+enter b :78
+78 is bigger
+
+Q.write a one shell script that accepts the file name from the user and check the file is existed in current directory or not.?
+Ans:
+[ec2-user@ip-172-31-35-179 ~]$ cat shell.sh 
+read -p "enter file name :" filename
+if [ -f /home/ec2-user/$filename ]
+then
+echo "file is existed"
+else
+        echo "file does not existed"
+fi
+[ec2-user@ip-172-31-35-179 ~]$ pwd
+/home/ec2-user
+[ec2-user@ip-172-31-35-179 ~]$ ls
+err.log  example.sh  if.sh  shell.sh
+[ec2-user@ip-172-31-35-179 ~]$ sh shell.sh 
+enter file name :err.log
+file is existed
+[ec2-user@ip-172-31-35-179 ~]$ sh shell.sh 
+enter file name :file1.txt
+file does not existed
+
+
+
+[ec2-user@ip-172-31-35-179 ~]$ ls
+err.log  example.sh  if.sh  shell.sh
+[ec2-user@ip-172-31-35-179 ~]$ cat shell.sh 
+read -p "enter file name :" filename
+if [ -f /home/ec2-user/$filename ]
+then
+echo "file is existed"
+echo "file content displaying if exists"
+cat $filename
+else
+        echo "file does not existed"
+        echo "creating a new file with that name"
+        touch $filename
+fi
+[ec2-user@ip-172-31-35-179 ~]$ sh shell.sh 
+enter file name :example.sh
+file is existed
+file content displaying if exists
+read -p "please enter your name: " username
+read -p "please enter password: " password
+echo "username is: " $username
+echo "password is:" $password
+Date
+
+[ec2-user@ip-172-31-35-179 ~]$ sh shell.sh 
+enter file name :file.txt
+file does not existed
+creating a new file with that name
+[ec2-user@ip-172-31-35-179 ~]$ ls
+err.log  example.sh  file.txt  if.sh  shell.sh
+
+
+read -p "enter file name :" filename
+if [ -f /home/ec2-user/$filename ]
+then
+echo "file is existed"
+echo "the path of file is :" `find -name $filename`
+echo "file content displaying if exists"
+cat $filename
+else
+        echo "file does not existed"
+        echo "creating a new file with that name"
+        touch $filename
+fi
+
+
+-f  -->To check file is existed or not
+-x  -->To execute permission
+-r  -->read permission
+-w  -->write permission
+
+----------------------------------------------------------------------------CLASS-4 END---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
