@@ -501,6 +501,50 @@ fi
 -w  -->write permission
 
 ----------------------------------------------------------------------------CLASS-4 END---------------------------------------------------------------------
+FOR LOOP:
+---------
+Example:
+-------
+[ec2-user@ip-172-31-35-179 ~]$ cat for.sh 
+echo "for loop demo..."
+for (( a=1; a<=5; a++ ))
+do
+        echo $a
+done
+echo "for loop demo is over..."
+[ec2-user@ip-172-31-35-179 ~]$ sh for.sh 
+for loop demo...
+1
+2
+3
+4
+5
+for loop demo is over...
+
+WHILE LOOP:
+----------
+Example:
+-------
+[ec2-user@ip-172-31-35-179 ~]$ cat while.sh 
+echo "while loop demo starts.."
+a=1
+while [ $a -le 5 ]
+do
+        echo $a
+        a=`expr $a + 1`
+done
+
+
+[ec2-user@ip-172-31-35-179 ~]$ sh while.sh 
+while loop demo starts..
+1
+2
+3
+4
+5
+
+SWITCH:
+------
 
 
 
