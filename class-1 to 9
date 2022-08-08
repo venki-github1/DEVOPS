@@ -802,7 +802,8 @@ example: watch -n 5 date
 # init 0 (stop the server immediately)
 
 ------------------------------------------------------------------CLASS-9 END------------------------------------------------------------------------------
-
+# nslookup <domain>
+# nslookup www.icicibank.com
 
 
 
