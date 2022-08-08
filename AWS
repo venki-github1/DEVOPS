@@ -1,0 +1,29 @@
+Today's Plan:
+-------------
+1)Ip adressing and subnetting
+2)VPC,Subnets and Routing table creation
+3)Deploying Linux server in VPC.
+
+1)Ip adressing and subnetting:
+------------------------------
+Ipv4 -> 32 bit
+Ipv6 -> 128 bit
+
+Ip address range ->0.0.0.0 to 255.255.255.255
+IP address classes:- https://www.guru99.com/ip-address-classes.html
+127.x.x.x -> Loop back address
+
+RFC-1918:
+https://www.ucl.ac.uk/isd/services/get-connected/wired-networks/use-private-rfc1918-address-space-ucl-internal-network
+
+10.0.0.0 (255.0.0.0 =10.0.0.0/8) (10 is constant)
+10.0.0.0 (255.255.0.0 =10.0.0.0/16) (10.0 is constant)
+10.0.0.0 (255.255.255.0 =10.0.0.0/24) (10.0.0 is constant)
+https://www.subnet-calculator.com/
+
+VPC:
+----
+uses  1) Resolves security issues
+      2) Resolves IP adresses conflicts
+      
+      ----------------------------------------------------------CLASS-1&2 END -----------------------------------------------------------------------------
