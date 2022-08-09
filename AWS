@@ -73,10 +73,48 @@ Today's Plan:
 
 #ec2-metadata
 -------------------------------------------------------CLASS-5 END-----------------------------------------------------------------------------------------
+Today's Plan:
+------------
+1)AWS CLI and CLOUD SHELL
 
+ctrl + l --> clear the screen
 
+-> install aws cli
+# aws configure
+# aws ec2 describe-vpcs  -> To list the vpcs
+# aws ec2 describe-vpcs --output=json
+# yum install jq  (jq is json processor)
+# aws ec2 describe-vpcs | jq
 
+[ec2-user@ip-10-35-1-119 ~]$ aws ec2 describe-vpcs | jq ".Vpcs[].VpcId"   (To list only vpc ids)
+"vpc-0af75ec9f5d38ecec"
+"vpc-091b81131e4315ae8"
 
+[ec2-user@ip-10-35-1-119 ~]$ aws ec2 describe-vpcs | jq ".Vpcs[].VpcId" | tr -d '"'
+vpc-0af75ec9f5d38ecec
+vpc-091b81131e4315ae8
+
+[ec2-user@ip-10-35-1-119 ~]$ aws ec2 describe-vpcs | jq ".Vpcs[].VpcId" | tr -d '"' | tr -d 'vpc'
+-0af75e9f5d38ee
+-091b81131e4315ae8
+
+# aws ec2 describe-vpcs --output=text
+# aws ec2 describe-vpcs --output=table
+
+[ec2-user@ip-10-35-1-119 .aws]$ cat credentials 
+[default]
+aws_access_key_id = AKIARXHRZZT3Z7435XGL
+aws_secret_access_key = 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
+
+[s3]
+aws_access_key_id = AKIARXHRZZT3Z7435YTR
+aws_secret_access_key = 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
+
+# aws s3 ls --profile=s3  (now it uses the credentials in above [s3])
+
+# curl http://169.254.169.254/latest  --> To get details about the server
+
+----------------------------------------------------------------------------CLASS-6 END--------------------------------------------------------------------
 
 
 
