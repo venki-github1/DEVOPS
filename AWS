@@ -60,8 +60,19 @@ Today's Plan:
 -> The subnets which does not have routing to the IGW called private subnets.
 -> NAT gateway needs one public subnet and one elastic IP.
 -----------------------------------------------------------CLASS-4 END-------------------------------------------------------------------------------------
+Today's Plan:
+------------
+1)Deploying a windows machine
+2)Installing active directory in windows machine.
+3)VPC flowlogs - can be saved to S3 or AWS cloudwatch logs.
 
+--> We can enable flowlogs at three levels  1)VPC level
+                                            2)subnet level
+                                            3)instance level (elastic network interface level)
+                                            
 
+#ec2-metadata
+-------------------------------------------------------CLASS-5 END-----------------------------------------------------------------------------------------
 
 
 
