@@ -1,8 +1,7 @@
 Today's Plan:
 -------------
 1)Ip adressing and subnetting
-2)VPC,Subnets and Routing table creation
-3)Deploying Linux server in VPC.
+2)Overview of VPC,Subnets 
 
 1)Ip adressing and subnetting:
 ------------------------------
@@ -27,3 +26,51 @@ uses  1) Resolves security issues
       2) Resolves IP adresses conflicts
       
       ----------------------------------------------------------CLASS-1&2 END -----------------------------------------------------------------------------
+Today's Plan:
+------------
+1)creating a VPC
+2)creating subnets and internet gateway
+3)creating routing tables
+4)adding the routes
+5)creating security groups
+6)creating a key pair
+7)Deploying ec2-server 
+8)connecting to ec2-server
+9)Install nginx webserver
+
+-->One VPC has attached with one IGW only.
+#!/bin/bash
+yum update -y
+amazon-linux-extras install nginx1.12 -y
+service nginx start 
+systemctl enable nginx
+echo "<h1>$(cat /etc/hostname)</h1>" >> /usr/share/nginx/html/index.html
+/var/www/html/index.nginx-debian.html
+--------------------------------------------------------------CLASS-3 END---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
