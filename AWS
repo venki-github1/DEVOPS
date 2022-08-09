@@ -38,7 +38,10 @@ Today's Plan:
 8)connecting to ec2-server
 9)Install nginx webserver
 
--->One VPC has attached with one IGW only.
+-->One VPC has attached with one IGW only. 
+-->VPC has multiple route tables.
+-->The Route table Main=yes means even if we dont add subnets under subnet association the default route will apply to that subnet which is newly created.
+
 #!/bin/bash
 yum update -y
 amazon-linux-extras install nginx1.12 -y
@@ -47,9 +50,16 @@ systemctl enable nginx
 echo "<h1>$(cat /etc/hostname)</h1>" >> /usr/share/nginx/html/index.html
 /var/www/html/index.nginx-debian.html
 --------------------------------------------------------------CLASS-3 END---------------------------------------------------------------------------------
+Today's Plan:
+------------
+1)public IP vs private IP
+2)public and private subnets
+3)How to provide internet access to the servers in private subnet using NAT gateway
 
-
-
+-> The subnets which have routing to IGW called public subnets.
+-> The subnets which does not have routing to the IGW called private subnets.
+-> NAT gateway needs one public subnet and one elastic IP.
+-----------------------------------------------------------CLASS-4 END-------------------------------------------------------------------------------------
 
 
 
