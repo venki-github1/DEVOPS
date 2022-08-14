@@ -139,6 +139,58 @@ VPC endpointd are region specific.
 ->Interface endpoint creates a interface on the corresponding subnet.
 
 -----------------------------------------------------------------------CLASS-8 END-------------------------------------------------------------------------
+Today's Plan:
+------------
+1)security groups ->are statefull firewalls
+2)NACL ->are stateless firewalls
+-->We can assign up to 5 Security groups for a server.
+-->We can copy the security groups from one VPC to another.
+
+->we can't deny traffic in SG.
+->SG applicable for EC2, RDS, EB, ALB except subnets.
+
+-->NACL applicable for subnet only.
+-->in NACL we have allow and deny the traffic
+
+general trouble shooting steps:
+------------------------------
+1)check am i able to ssh/rdp to the server.
+2)check the application service running state.
+3)check any OS level firewall like ufw(for ubuntu) and windiows firewall and try to reach localhost on the browser.
+4)check SG and NACL ports are open or not.
+5)check Load balance targets are healthy or not
+6)check DNS name resolution working or not.
+
+--------------------------------------------------------------------CLASS-9 END----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
