@@ -126,9 +126,19 @@ Two main rules for VPC peering:
 --> VPC peering do not support transit
 
 ------------------------------------------------------------------------CLASS-7 END------------------------------------------------------------------------
+Today's Plan:
+------------
+1)VPC endpoints  --> 2types
+                        1)Gateway endpoints ->Used for S3 and dynamo db
+                        2)Interface endpoints ->Used for all other services
+                        
 
+VPC endpointd are region specific.
+->VPC endpoints will allow the servers inside the VPC to communicate with other AWS services internally without going over the internet.
+->Gateway endpoints added the route in the routing table it will be very faster.
+->Interface endpoint creates a interface on the corresponding subnet.
 
-
+-----------------------------------------------------------------------CLASS-8 END-------------------------------------------------------------------------
 
 
 
