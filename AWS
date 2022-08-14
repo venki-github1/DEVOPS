@@ -115,7 +115,17 @@ aws_secret_access_key = 9XiA6hVTVdvXRTussWocTT2VnPzYC1w9+HhLUio5
 # curl http://169.254.169.254/latest  --> To get details about the server
 
 ----------------------------------------------------------------------------CLASS-6 END--------------------------------------------------------------------
+Today's Plan:
+------------
+1)VPC Peering
 
+-->By default there is no communication between two VPCs
+Two main rules for VPC peering:
+------------------------------
+--> Two vpcs must have different CIDR blocks
+--> VPC peering do not support transit
+
+------------------------------------------------------------------------CLASS-7 END------------------------------------------------------------------------
 
 
 
