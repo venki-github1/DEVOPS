@@ -1,4 +1,4 @@
-Linux file system:
+Linux file system;
 --------------------
 / called as root directory
 Home directory: All the directories are created under the Home directory with user name. it contain only normal users info.
