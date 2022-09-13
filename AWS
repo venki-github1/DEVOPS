@@ -162,6 +162,22 @@ general trouble shooting steps:
 6)check DNS name resolution working or not.
 
 --------------------------------------------------------------------CLASS-9 END----------------------------------------------------------------------------
+Today's plan: Class-13
+------------
+1)AWS EC2
+      -EC2 instances
+      -AMI and inspector
+      -EBS volumes
+      -Network LoadBalancer
+      -Application LoadBalancer
+      -AutoScaling Groups
+      -AWS Route53 introduction
+      -AWS certificate Manager(ACM)
+      
+--> AWS instance types
+--> Placement groups
+-->Tenancy
+
 
 
 
